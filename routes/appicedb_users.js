@@ -5,16 +5,15 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
     try {
-        var User = await User.find() 
-        console.log(User)
-        User.foreach( async (data) => {
-            var newuser = new user({
-                name: data.name,
-                email: data.email
-            })
-            var saveData = await newuser.save()
-            res.send({ userSaved: savedData  , message : "userSaved"})
-        })
+        var Users = await User.find({}) 
+       Users.forEach(async (data) => {
+		   var newuser = new user({
+			   name : data.name,
+			   email : data.name
+		   })
+		   const result = await newuser.save()
+		   res.send({ data : result , msg : " user saved"})
+	   })
     }
     catch(error) {
         res.send(error);

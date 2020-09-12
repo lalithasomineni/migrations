@@ -14,4 +14,12 @@ router.post("/",(req,res)=>{
 		res.json(err);
 	})
 })
+
+router.get("/",(req,res)=>{
+	User.find().then(result=>{
+		res.send(result);
+	}).catch(err=>{
+		res.send(err);
+	})
+})
  module.exports = router;
